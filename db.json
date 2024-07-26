@@ -1,0 +1,82 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "email": "princolosh@gmail.com",
+      "name": "Cornflakes",
+      "category": "cereal",
+      "price": 1200,
+      "quantity": 5,
+      "active": false,
+      "initial": 20
+    },
+    {
+      "id": "2",
+      "email": "princolosh@gmail.com",
+      "name": "Hungry man Indomie",
+      "category": "Noodles",
+      "price": 15000,
+      "quantity": 18,
+      "initial": 20,
+      "active": true
+    },
+    {
+      "id": "3",
+      "email": "princolosh@gmail.com",
+      "name": "Milo",
+      "category": "beverage",
+      "price": 2000,
+      "quantity": 17,
+      "initial": 30,
+      "active": true
+    },
+    {
+      "id": "4",
+      "email": "princolosh@gmail.com",
+      "name": "Beef",
+      "category": "Breakfast",
+      "price": 2000,
+      "quantity": 30,
+      "active": false,
+      "initial": 80
+    }
+  ],
+  "product": [
+    {
+      "id": "1",
+      "name": "Indomie",
+      "amount": 56,
+      "price": 15000,
+      "initial": 100,
+      "active": true,
+      "amoumt": 70
+    },
+    {
+      "id": "2",
+      "name": "Meat",
+      "amount": 124,
+      "price": 5000,
+      "initial": 150,
+      "active": true,
+      "amoumt": 148
+    },
+    {
+      "id": "3",
+      "name": "Bread",
+      "amount": 190,
+      "price": 1500,
+      "initial": 200,
+      "active": true,
+      "amoumt": 192
+    },
+    {
+      "id": "4",
+      "name": "Rice",
+      "amount": 300,
+      "price": 50000,
+      "initial": 300,
+      "active": true,
+      "amoumt": 305
+    }
+  ]
+}
