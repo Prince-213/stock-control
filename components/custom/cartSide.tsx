@@ -1,5 +1,3 @@
-"use client";
-
 import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import {
   Dialog,
@@ -15,8 +13,15 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
 import emailjs from "@emailjs/browser";
-import { fetchTodoList } from "@/lib/actions";
+
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const fetchTodoList = async () => {
+  const res = await fetch("/api/products", { cache: "no-cache" });
+  const data = res.json();
+  return data;
+};
 
 export default function CartSide({
   cartOpen,
@@ -39,12 +44,6 @@ export default function CartSide({
   //     });
   // };
 
-  const fetchTodoList = async () => {
-    const res = await fetch("/api/products");
-    const data = res.json();
-    return data;
-  };
-
   const {
     data: productData,
     error,
@@ -57,8 +56,6 @@ export default function CartSide({
 
     refetchOnMount: true
   });
-
-  const router = useRouter();
 
   const alertMail = async () => {
     if (isSuccess)
@@ -86,8 +83,6 @@ export default function CartSide({
   // const name = getProductByQuantity(data, "2");
 
   const queryClient = useQueryClient();
-
-  const [selected, setselected] = useState("");
 
   const mutation = useMutation({
     mutationFn: async ({ id, quantity }: { id: string; quantity: number }) => {

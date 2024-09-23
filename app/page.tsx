@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import CartSide from "@/components/custom/cartSide";
 import { TableDemo } from "@/components/custom/sales-table";
 import { Input } from "@/components/ui/input";
