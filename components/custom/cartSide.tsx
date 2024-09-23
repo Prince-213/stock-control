@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import {
   Dialog,
@@ -15,7 +17,6 @@ import { Loader } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 import { useEffect } from "react";
-import dynamic from "next/dynamic";
 
 const fetchTodoList = async () => {
   const res = await fetch("/api/products", { cache: "no-cache" });
