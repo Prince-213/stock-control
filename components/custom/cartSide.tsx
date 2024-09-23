@@ -6,7 +6,7 @@ import {
   DialogPanel,
   DialogTitle,
   Transition,
-  TransitionChild,
+  TransitionChild
 } from "@headlessui/react";
 import { calculateTotalPrice, Cart, Product } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -22,7 +22,7 @@ export default function CartSide({
   cartOpen,
   setCartOpen,
   cart,
-  setCart,
+  setCart
 }: {
   cartOpen: boolean;
   setCartOpen: Dispatch<SetStateAction<boolean>>;
@@ -49,26 +49,34 @@ export default function CartSide({
     data: productData,
     error,
     isFetching,
+    isFetched,
+    isSuccess
   } = useQuery({
     queryKey: ["items"],
     queryFn: fetchTodoList,
 
-    refetchOnMount: true,
+    refetchOnMount: true
   });
 
   const router = useRouter();
 
   const alertMail = async () => {
-    productData?.map((item: any, index: number) => {
-      if (item.amount < 50) {
-        sendMail({ email: "onyiacypraintochi@gmail.com", item: item.name });
-      }
-    });
+    if (isSuccess)
+      productData.map((item: any, index: number) => {
+        if (item.amount < 50) {
+          sendMail({ email: "onyiacypraintochi@gmail.com", item: item.name });
+          console.log("mail sent");
+        }
+      });
   };
 
   useEffect(() => {
-    alertMail();
+    isFetched ? alertMail() : null;
   }, []);
+
+  if (isSuccess) {
+    alertMail();
+  }
 
   // const getProductByQuantity = (arr: Product[], id: string) => {
   //   const item = arr?.find((item) => item.id === id);
@@ -84,7 +92,7 @@ export default function CartSide({
   const mutation = useMutation({
     mutationFn: async ({ id, quantity }: { id: string; quantity: number }) => {
       return axios.patch(`/api/products/${id}`, {
-        quantity: quantity,
+        quantity: quantity
       });
     },
 
@@ -112,7 +120,7 @@ export default function CartSide({
       console.log("It is settled");
       alertMail();
       queryClient.invalidateQueries({ queryKey: ["items"] });
-    },
+    }
   });
 
   const sendMail = ({ email, item }: { email: string; item: string }) => {
@@ -124,7 +132,7 @@ export default function CartSide({
         to_name: "User",
         message: `The product you posted ( ${item} ) stock is low. Please do replenish your inventory`,
         to_email: email,
-        reply_to: "princolosh@gmail.com",
+        reply_to: "princolosh@gmail.com"
       },
       { publicKey: "lXy3uMKebxhwBPRWt" }
     );

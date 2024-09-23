@@ -8,7 +8,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -26,7 +26,7 @@ export function DialogDemo({
   quantity,
   status,
   email,
-  initial,
+  initial
 }: {
   id: string;
   name: string;
@@ -62,7 +62,7 @@ export function DialogDemo({
         to_name: "User",
         message: `The product you posted ( ${item} ) stock is low. Please do replenish your inventory`,
         to_email: useEmail,
-        reply_to: "princolosh@gmail.com",
+        reply_to: "princolosh@gmail.com"
       },
       { publicKey: "lXy3uMKebxhwBPRWt" }
     );
@@ -73,9 +73,9 @@ export function DialogDemo({
       return fetch(`http://localhost:3000/product/${id}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(newItem),
+        body: JSON.stringify(newItem)
       }).then((response) => response.json());
     },
     onError(error, variables, context) {
@@ -92,7 +92,7 @@ export function DialogDemo({
 
     onSettled(data, error, variables, context) {
       queryClient.invalidateQueries({ queryKey: ["items"] });
-    },
+    }
   });
 
   const handleSubmit = (e: any) => {
@@ -100,6 +100,7 @@ export function DialogDemo({
 
     if (initial / 2 > quantity - amount) {
       sendMail({ email: email, item: name });
+      console.log("mail sent");
     }
 
     mutation.mutate({
@@ -110,7 +111,7 @@ export function DialogDemo({
       price: price,
       quantity: quantity - amount,
       active: initial / 2 > quantity - amount ? false : true,
-      initial: initial,
+      initial: initial
     });
   };
 
