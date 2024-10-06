@@ -60,7 +60,7 @@ export default function CartSide({
 
   const alertMail = async () => {
     if (isSuccess)
-      productData.map((item: any, index: number) => {
+      await productData.map((item: any, index: number) => {
         if (item.amount < 50) {
           sendMail({ email: "onyiacypraintochi@gmail.com", item: item.name });
           console.log("mail sent");
@@ -128,7 +128,7 @@ export default function CartSide({
         to_name: "User",
         message: `The product you posted ( ${item} ) stock is low. Please do replenish your inventory`,
         to_email: email,
-        reply_to: "princolosh@gmail.com"
+        reply_to: "onyiacypraintochi@gmail.com"
       },
       { publicKey: "lXy3uMKebxhwBPRWt" }
     );
@@ -145,9 +145,9 @@ export default function CartSide({
         if (cart != null) {
           mutation.mutate({ id: item.id, quantity: item.quantity });
 
-          // if (item.quantity < 50) {
-          //   sendMail({ email: "princolosh@gmail.com", item: item.name });
-          // }
+          if (item.quantity < 50) {
+            sendMail({ email: "onyiacypraintochi@gmail.com", item: item.name });
+          }
         }
       });
 

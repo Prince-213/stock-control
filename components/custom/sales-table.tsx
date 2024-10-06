@@ -8,7 +8,7 @@ import {
   TableFooter,
   TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from "@/components/ui/table";
 
 import {
@@ -16,7 +16,7 @@ import {
   DollarSignIcon,
   Loader2,
   PlusCircle,
-  ShoppingBag,
+  ShoppingBag
 } from "lucide-react";
 import { DialogDemo } from "./sale-dialog";
 import axios from "axios";
@@ -37,13 +37,13 @@ const invoices = [
     category: "Foodstuff",
     price: "$250",
     quantity: "20",
-    status: "false",
-  },
+    status: "false"
+  }
 ];
 
 export function TableDemo({
   cart,
-  setCart,
+  setCart
 }: {
   cart: Cart[];
   setCart: Dispatch<SetStateAction<Cart[]>>;
@@ -57,12 +57,12 @@ export function TableDemo({
   const {
     data: productData,
     error,
-    isFetching,
+    isFetching
   } = useQuery({
     queryKey: ["items"],
     queryFn: fetchTodoList,
 
-    refetchOnMount: true,
+    refetchOnMount: true
   });
 
   console.log(productData);
@@ -76,7 +76,7 @@ export function TableDemo({
         to_name: "User",
         message: `The product you posted ( ${item} ) stock is low. Please do replenish your inventory`,
         to_email: email,
-        reply_to: "princolosh@gmail.com",
+        reply_to: "onyiacypraintochi@gmail.com"
       },
       { publicKey: "lXy3uMKebxhwBPRWt" }
     );
@@ -91,8 +91,10 @@ export function TableDemo({
   };
 
   useEffect(() => {
-    alertMail();
-  }, []);
+    if (productData != null) {
+      alertMail();
+    }
+  }, [productData]);
 
   const [quantity, setQuantity] = useState(1);
 
@@ -156,8 +158,8 @@ export function TableDemo({
                           price: invoice.price,
                           quantity: quantity,
                           imageSrc: "",
-                          imageAlt: "",
-                        },
+                          imageAlt: ""
+                        }
                       ]);
                       console.log(cart);
                     }}
