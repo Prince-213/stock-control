@@ -69,8 +69,8 @@ export function TableDemo({
 
   const sendMail = ({ email, item }: { email: string; item: string }) => {
     emailjs.send(
-      "service_3cs79uj",
-      "template_wm40ob8",
+      "service_bo6pfco",
+      "template_hpf5gt9",
       {
         from_name: "Store Analysis",
         to_name: "User",
@@ -78,7 +78,7 @@ export function TableDemo({
         to_email: email,
         reply_to: "onyiacypraintochi@gmail.com"
       },
-      { publicKey: "lXy3uMKebxhwBPRWt" }
+      { publicKey: "sVrqItToyCiN-irs3" }
     );
   };
 
