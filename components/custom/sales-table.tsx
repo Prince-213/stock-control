@@ -82,6 +82,21 @@ export function TableDemo({
     );
   };
 
+  const sendAlert = async () => {
+    const lowPricedProducts = productData.filter(
+      (product: { amount: number }) => product.amount < 50
+    );
+
+    if (lowPricedProducts.length > 0) {
+      const message = lowPricedProducts.map(
+        (product: { name: any; amount: any }) => `${product.name}`
+      );
+
+      // Send the email
+      await sendMail({ email: "onyiacypraintochi@gmail.com", item: message });
+    }
+  };
+
   const alertMail = async () => {
     productData?.map((item: any, index: number) => {
       if (item.amount < 50) {
@@ -93,6 +108,7 @@ export function TableDemo({
   useEffect(() => {
     if (productData != null) {
       alertMail();
+      sendAlert();
     }
   }, [productData]);
 
@@ -182,7 +198,4 @@ export function TableDemo({
       </Table>
     </div>
   );
-}
-function sendMail(arg0: { email: string; item: any }) {
-  throw new Error("Function not implemented.");
 }

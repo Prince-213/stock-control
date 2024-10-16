@@ -139,14 +139,17 @@ export default function CartSide({
     return item?.amount;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     for (let index = 0; index < cart.length; index++) {
-      cart.map((item, index) => {
+      await cart.map((item, index) => {
         if (cart != null) {
           mutation.mutate({ id: item.id, quantity: item.quantity });
 
           if (item.quantity < 50) {
-            sendMail({ email: "onyiacypraintochi@gmail.com", item: item.name });
+            sendMail({
+              email: "onyiacypraintochi@gmail.com",
+              item: item.name
+            });
           }
         }
       });
